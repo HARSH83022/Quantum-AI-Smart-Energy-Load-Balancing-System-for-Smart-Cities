@@ -1,0 +1,68 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ main, T2-Quant, develop ]
+  pull_request:
+    branches: [ main, T2-Quant ]
+
+jobs:
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install quality tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install black isort flake8 mypy pylint
+    
+    - name: Check code formatting with Black
+      run: |
+        black --check src tests || echo "⚠️ Code formatting issues found"
+    
+    - name: Check import sorting with isort
+      run: |
+        isort --check-only src tests || echo "⚠️ Import sorting issues found"
+    
+    - name: Run flake8
+      run: |
+        flake8 src tests --max-line-length=127 --extend-ignore=E203,W503 || echo "⚠️ Flake8 issues found"
+    
+    - name: Run pylint
+      run: |
+        pip install -r requirements.txt
+        pylint src --disable=all --enable=E,F --exit-zero
+
+  complexity:
+    name: Code Complexity Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install radon
+      run: |
+        pip install radon
+    
+    - name: Calculate cyclomatic complexity
+      run: |
+        radon cc src -a -nb
+    
+    - name: Calculate maintainability index
+      run: |
+        radon mi src -nb

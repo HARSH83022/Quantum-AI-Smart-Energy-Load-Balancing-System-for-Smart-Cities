@@ -1,5 +1,12 @@
 # Quantum-AI Smart Energy Load Balancing System
 
+[![CI/CD Pipeline](https://github.com/HARSH83022/Quantum-AI-Smart-Energy-Load-Balancing-System-for-Smart-Cities/actions/workflows/ci-cd.yml/badge.svg?branch=T2-Quant)](https://github.com/HARSH83022/Quantum-AI-Smart-Energy-Load-Balancing-System-for-Smart-Cities/actions/workflows/ci-cd.yml)
+[![Fast Tests](https://github.com/HARSH83022/Quantum-AI-Smart-Energy-Load-Balancing-System-for-Smart-Cities/actions/workflows/test-fast.yml/badge.svg)](https://github.com/HARSH83022/Quantum-AI-Smart-Energy-Load-Balancing-System-for-Smart-Cities/actions/workflows/test-fast.yml)
+[![Code Quality](https://github.com/HARSH83022/Quantum-AI-Smart-Energy-Load-Balancing-System-for-Smart-Cities/actions/workflows/code-quality.yml/badge.svg)](https://github.com/HARSH83022/Quantum-AI-Smart-Energy-Load-Balancing-System-for-Smart-Cities/actions/workflows/code-quality.yml)
+[![Docker Build](https://github.com/HARSH83022/Quantum-AI-Smart-Energy-Load-Balancing-System-for-Smart-Cities/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/HARSH83022/Quantum-AI-Smart-Energy-Load-Balancing-System-for-Smart-Cities/actions/workflows/docker-publish.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A production-ready backend system combining LSTM forecasting with quantum-inspired optimization for smart grid load balancing.
 
 ## Features
