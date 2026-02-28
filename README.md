@@ -2,7 +2,7 @@
 
 
 
-Frontend Dashboard \n
+Frontend Dashboard 
         ↓
 FastAPI Backend
         ↓
