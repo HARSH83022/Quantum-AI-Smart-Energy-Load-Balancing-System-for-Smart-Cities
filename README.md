@@ -190,7 +190,9 @@ MIT License
 
 ## Contributors
 
-- Your Name
+- Harsh Mishra
+- Ramya Sharma
+- Harshit Verma
 
 ## Acknowledgments
 
