@@ -2,8 +2,8 @@
 
 
 
-Frontend Dashboard 
-        ↓
+Frontend Dashboard <br>
+        ↓<br>
 FastAPI Backend
         ↓
 AI Forecast Model
