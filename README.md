@@ -4,7 +4,7 @@
 
 Frontend Dashboard <br>
         ↓<br>
-FastAPI Backend
+FastAPI Backend<br>
         ↓<br>
 AI Forecast Model<br>
         ↓<br>
