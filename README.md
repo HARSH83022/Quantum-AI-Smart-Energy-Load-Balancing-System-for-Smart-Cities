@@ -39,7 +39,7 @@ quantum-energy-system/
 │   ├── api/                    # REST API endpoints
 │   └── database/               # Database models
 ├── tests/                      # Test suite
-├── .kiro/specs/               # Specification documents
+├── User.speci/docs              # Specification documents
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
