@@ -7,7 +7,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A production-ready backend system combining LSTM forecasting with quantum-inspired optimization for smart grid load balancing.
+A full-stack quantum energy optimization system with backend API and frontend dashboard for smart grid load balancing.
 
 ## Features
 
@@ -31,25 +31,29 @@ A production-ready backend system combining LSTM forecasting with quantum-inspir
 
 ```
 quantum-energy-system/
-├── src/
-│   ├── data_sources/          # CSV and IoT data loaders
-│   ├── preprocessing/          # Data preprocessing
-│   ├── frequency_analysis/     # FFT and QFT analysis
-│   ├── forecasting/            # LSTM models
-│   ├── scenario_generation/    # Probabilistic scenarios
-│   ├── monte_carlo/            # Stress testing
-│   ├── optimization/
-│   │   ├── qubo/              # QUBO formulation
-│   │   ├── robust_qubo/       # Robust optimization
-│   │   ├── qaoa/              # Quantum optimization
-│   │   └── risk_analysis/     # Risk metrics
-│   ├── api/                    # REST API endpoints
-│   └── database/               # Database models
-├── tests/                      # Test suite
+├── backend/                    # Backend API and core logic
+│   ├── src/
+│   │   ├── data_sources/          # CSV and IoT data loaders
+│   │   ├── preprocessing/          # Data preprocessing
+│   │   ├── frequency_analysis/     # FFT and QFT analysis
+│   │   ├── forecasting/            # LSTM models
+│   │   ├── scenario_generation/    # Probabilistic scenarios
+│   │   ├── monte_carlo/            # Stress testing
+│   │   ├── optimization/
+│   │   │   ├── qubo/              # QUBO formulation
+│   │   │   ├── robust_qubo/       # Robust optimization
+│   │   │   ├── qaoa/              # Quantum optimization
+│   │   │   └── risk_analysis/     # Risk metrics
+│   │   ├── api/                    # REST API endpoints
+│   │   └── database/               # Database models
+│   ├── tests/                      # Test suite
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── docker-compose.yml
+├── frontend/                   # Frontend dashboard (planned)
+│   └── README.md              # Frontend implementation guide
+├── .github/                    # CI/CD workflows
 ├── .kiro/specs/               # Specification documents
-├── requirements.txt
-├── Dockerfile
-├── docker-compose.yml
 └── README.md
 ```
 
@@ -60,12 +64,12 @@ quantum-energy-system/
 - PostgreSQL 15+ (or use Docker Compose)
 - IBM Quantum API key (optional, for quantum backend)
 
-### Local Setup
+### Backend Setup
 
 1. Clone the repository
 ```bash
 git clone <repository-url>
-cd quantum-energy-system
+cd quantum-energy-system/backend
 ```
 
 2. Create virtual environment
@@ -90,14 +94,33 @@ cp .env.example .env
 uvicorn src.main:app --reload
 ```
 
+### Quick Start Scripts
+
+For convenience, you can use the provided helper scripts:
+
+**Linux/Mac:**
+```bash
+./run-backend.sh
+```
+
+**Windows:**
+```bash
+run-backend.bat
+```
+
 ### Docker Setup
 
-1. Build and run with Docker Compose
+1. Navigate to backend directory and build
 ```bash
+cd backend
 docker-compose up --build
 ```
 
 2. Access the API at `http://localhost:8000`
+
+### Frontend Setup
+
+Frontend implementation is planned for future development. See `frontend/README.md` for details.
 
 ## API Endpoints
 
@@ -160,6 +183,7 @@ pytest tests/ -v --hypothesis-show-statistics
 ✅ **QAOA Optimization** - Enhanced quantum optimizer with parameter warm-starting
 ✅ **REST API** - Complete FastAPI with 8 endpoints (4 core + 4 research)
 ✅ **Error Handling** - Centralized logging and structured error management
+✅ **Security Measures** - Bandit scanning, secure coding practices, vulnerability management
 ✅ **Testing Suite** - 26 property-based tests + 15+ unit tests
 ✅ **Docker Deployment** - Complete containerization with docker-compose
 ✅ **CI/CD Pipeline** - GitHub Actions with automated testing and deployment

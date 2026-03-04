@@ -27,18 +27,22 @@ jobs:
     
     - name: Check code formatting with Black
       run: |
+        cd backend
         black --check src tests || echo "⚠️ Code formatting issues found"
     
     - name: Check import sorting with isort
       run: |
+        cd backend
         isort --check-only src tests || echo "⚠️ Import sorting issues found"
     
     - name: Run flake8
       run: |
+        cd backend
         flake8 src tests --max-line-length=127 --extend-ignore=E203,W503 || echo "⚠️ Flake8 issues found"
     
     - name: Run pylint
       run: |
+        cd backend
         pip install -r requirements.txt
         pylint src --disable=all --enable=E,F --exit-zero
 
@@ -61,8 +65,10 @@ jobs:
     
     - name: Calculate cyclomatic complexity
       run: |
+        cd backend
         radon cc src -a -nb
     
     - name: Calculate maintainability index
       run: |
+        cd backend
         radon mi src -nb

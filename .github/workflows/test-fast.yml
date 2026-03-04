@@ -23,6 +23,7 @@ jobs:
     
     - name: Install dependencies
       run: |
+        cd backend
         python -m pip install --upgrade pip
         # Install core packages first from PyPI
         pip install fastapi uvicorn sqlalchemy aiosqlite numpy pandas pytest pytest-asyncio python-dotenv scikit-learn
@@ -31,6 +32,7 @@ jobs:
     
     - name: Run quick tests
       run: |
+        cd backend
         pytest tests/test_simple.py -v
       env:
         DATABASE_URL: sqlite+aiosqlite:///./test.db
