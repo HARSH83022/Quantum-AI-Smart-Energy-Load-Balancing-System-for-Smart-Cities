@@ -1,0 +1,4 @@
+# file: D:\Quantum_mini_project\src\optimization\risk_analysis\quantum_risk_analyzer.py
+# hypothesis_version: 6.151.9
+
+[0.0, 0.95, 1.0, 100, 'confidence_level', 'cost_std', 'cost_variance', 'cvar_95', 'expected_cost', 'inf', 'lambda_risk', 'n_scenarios', 'sharpe_ratio', 'var_95']

@@ -1,0 +1,4 @@
+# file: D:\Quantum_mini_project\src\optimization\qaoa\qaoa_optimizer.py
+# hypothesis_version: 6.151.9
+
+[0.0, 0.0001, 1000, 1024, 'COBYLA', 'IBM_QUANTUM_API_KEY', 'backend_used', 'circuit_depth', 'convergence_rate', 'energy_variance', 'gate_count', 'ibm_quantum', 'maxiter', 'n_iterations', 'n_qubits', 'objective_value', 'p_layers', 'solution', 'success']

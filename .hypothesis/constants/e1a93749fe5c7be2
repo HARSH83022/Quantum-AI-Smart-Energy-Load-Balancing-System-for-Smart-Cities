@@ -1,0 +1,4 @@
+# file: D:\Quantum_mini_project\src\database\connection.py
+# hypothesis_version: 6.151.9
+
+['DATABASE_URL', 'postgresql://']

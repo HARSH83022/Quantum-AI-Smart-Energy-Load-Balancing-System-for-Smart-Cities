@@ -1,0 +1,4 @@
+# file: D:\Quantum_mini_project\src\optimization\robust_qubo\robust_builder.py
+# hypothesis_version: 6.151.9
+
+[1.0, 5.0, 10.0, 15.0, 100.0, 'delta', 'deterministic', 'is_symmetric', 'mode', 'n_scenarios', 'n_transformers', 'n_variables', 'n_zones', 'scenario-based', 'worst-case', 'worst_scenario_idx']

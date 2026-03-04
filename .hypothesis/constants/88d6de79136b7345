@@ -1,0 +1,4 @@
+# file: D:\Quantum_mini_project\src\preprocessing\missing_value_handler.py
+# hypothesis_version: 6.151.9
+
+['bfill', 'drop', 'ffill', 'forward_fill', 'mean']
