@@ -1,0 +1,4 @@
+# file: D:\Quantum_mini_project\src\frequency_analysis\classical_fft.py
+# hypothesis_version: 6.151.9
+
+[1e-10, 0.05, 0.1, 1.0, 4.0, 24.0, 168.0, 'daily_cycle_strength', 'frequency_hz', 'has_daily_cycle', 'has_weekly_cycle', 'magnitude', 'period_hours']

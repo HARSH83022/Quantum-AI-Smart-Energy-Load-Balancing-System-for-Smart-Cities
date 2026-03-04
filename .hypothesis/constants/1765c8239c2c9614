@@ -1,0 +1,4 @@
+# file: D:\Quantum_mini_project\src\database\models.py
+# hypothesis_version: 6.151.9
+
+['forecasts', 'forecasts.id', 'frequency_features', 'optimization_results', 'preprocessed_data', 'qubo_matrices', 'qubo_matrices.id', 'raw_data', 'raw_data.id', 'risk_metrics', 'robust_qubo_matrices', 'scenarios', 'scenarios.id']

@@ -1,0 +1,4 @@
+# file: D:\Quantum_mini_project\src\frequency_analysis\quantum_qft.py
+# hypothesis_version: 6.151.9
+
+[1e-06, 1.0, 'amplitude', 'constant', 'dominant_frequencies', 'frequency', 'index', 'is_normalized', 'max_amplitude', 'mean_amplitude', 'metadata', 'n_qubits', 'norm', 'q', 'spectrum', 'spectrum_size', 'statevector']

@@ -1,0 +1,4 @@
+# file: D:\Quantum_mini_project\src\data_sources\csv_loader.py
+# hypothesis_version: 6.151.9
+
+['%d-%m-%Y %H:%M', 'capacity_MW', 'current', 'day_of_week', 'demand_MW', 'hour', 'humidity', 'month', 'temperature', 'timestamp', 'transformer', 'voltage', 'zone']

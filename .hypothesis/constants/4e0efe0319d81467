@@ -1,0 +1,4 @@
+# file: D:\Quantum_mini_project\src\utils\logging_config.py
+# hypothesis_version: 6.151.9
+
+['@timestamp', 'INFO', 'JSON', 'LOG_LEVEL', 'Logging configured', 'exception', 'format', 'level', 'log_level', 'severity', 'timestamp']

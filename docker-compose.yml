@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: quantum_user
+      POSTGRES_PASSWORD: quantum_pass
+      POSTGRES_DB: quantum_energy_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://quantum_user:quantum_pass@db:5432/quantum_energy_db
+      JWT_SECRET: dev-secret-key-change-in-production
+      IBM_QUANTUM_API_KEY: nvpYvXL2zNkON83rCJAEIVgkN39ftxVgLb-tUbyG8Ce3
+      GEMINI_API_KEY: AIzaSyDf1oKLF7zReT3IqBn-Sd2pmwxytcldgMc
+      LOG_LEVEL: INFO
+      QAOA_LAYERS: 3
+      LSTM_EPOCHS: 100
+      N_SCENARIOS: 100
+      RISK_WEIGHT: 15.0
+      CVAR_CONFIDENCE: 0.95
+    depends_on:
+      - db
+    volumes:
+      - ./src:/app/src
+      - ./delhi_smart_grid_dataset.csv:/app/data/delhi_smart_grid_dataset.csv
+
+volumes:
+  postgres_data:
