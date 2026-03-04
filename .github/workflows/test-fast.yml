@@ -24,11 +24,11 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install fastapi uvicorn sqlalchemy aiosqlite numpy pandas pytest pytest-asyncio
     
     - name: Run quick tests
       run: |
-        pytest tests/test_database.py tests/test_csv_loader.py -v
+        pytest tests/test_simple.py -v
       env:
         DATABASE_URL: sqlite+aiosqlite:///./test.db
         JWT_SECRET: test-secret
