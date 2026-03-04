@@ -161,6 +161,6 @@ async def root():
 if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
-    # Use localhost for development, 0.0.0.0 only in production
+    # Security: Use localhost by default, production can override via HOST env var
     host = os.getenv("HOST", "127.0.0.1")  # nosec B104
     uvicorn.run(app, host=host, port=port)

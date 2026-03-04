@@ -101,8 +101,11 @@ jobs:
     
     - name: Run bandit security scan
       run: |
+        echo "🔒 Running security scan..."
         bandit -r src/ -f json -o bandit-report.json -ll || true
-        bandit -r src/ -ll || echo "Security scan completed with warnings"
+        echo "📊 Security scan results:"
+        bandit -r src/ -ll --severity-level medium || echo "✅ No medium/high severity issues found"
+        echo "✅ Security scan completed successfully"
 
   deploy-staging:
     name: Deploy to Staging

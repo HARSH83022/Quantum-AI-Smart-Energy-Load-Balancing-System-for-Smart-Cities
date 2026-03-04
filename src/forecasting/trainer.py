@@ -105,7 +105,7 @@ class ModelTrainer:
             if val_loss_value < best_val_loss:
                 best_val_loss = val_loss_value
                 patience_counter = 0
-                # Save best model
+                # Save best model (only state dict, not full model for security)
                 torch.save(self.model.state_dict(), 'best_model.pth')
             else:
                 patience_counter += 1
@@ -117,8 +117,13 @@ class ModelTrainer:
                 logger.info(f"Early stopping at epoch {epoch+1}")
                 break
         
-        # Load best model (secure loading)
-        self.model.load_state_dict(torch.load('best_model.pth', map_location='cpu', weights_only=True))
+        # Load best model with secure parameters to prevent code execution
+        model_path = 'best_model.pth'
+        self.model.load_state_dict(torch.load(
+            model_path, 
+            map_location='cpu', 
+            weights_only=True  # Security: Only load weights, not arbitrary code
+        ))
         logger.info(f"Training completed. Best val loss: {best_val_loss:.6f}")
         
         return history
