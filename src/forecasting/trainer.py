@@ -117,8 +117,8 @@ class ModelTrainer:
                 logger.info(f"Early stopping at epoch {epoch+1}")
                 break
         
-        # Load best model
-        self.model.load_state_dict(torch.load('best_model.pth'))
+        # Load best model (secure loading)
+        self.model.load_state_dict(torch.load('best_model.pth', map_location='cpu', weights_only=True))
         logger.info(f"Training completed. Best val loss: {best_val_loss:.6f}")
         
         return history

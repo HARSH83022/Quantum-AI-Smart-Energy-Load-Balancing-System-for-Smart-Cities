@@ -24,7 +24,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install fastapi uvicorn sqlalchemy aiosqlite numpy pandas pytest pytest-asyncio python-dotenv scikit-learn torch --index-url https://download.pytorch.org/whl/cpu
+        # Install core packages first from PyPI
+        pip install fastapi uvicorn sqlalchemy aiosqlite numpy pandas pytest pytest-asyncio python-dotenv scikit-learn
+        # Install PyTorch separately with CPU index
+        pip install torch --index-url https://download.pytorch.org/whl/cpu
     
     - name: Run quick tests
       run: |
