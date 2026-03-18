@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>AI Smart Grid Control</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+text-align:center;
+}
+
+header{
+font-size:30px;
+padding:20px;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.card{
+background:rgba(255,255,255,0.1);
+padding:15px;
+border-radius:12px;
+width:160px;
+}
+
+.zone{
+background:#1b3a4b;
+padding:10px;
+margin:5px;
+border-radius:10px;
+}
+
+.alert{
+font-size:20px;
+margin:15px;
+font-weight:bold;
+}
+
+.green{color:#00ffb3;}
+.yellow{color:#ffd54f;}
+.red{color:#ff5252;}
+
+</style>
+</head>
+
+<body>
+
+<header>⚡ AI Smart Grid Control Center</header>
+
+<input type="date" id="date">
+<br><br>
+<button onclick="predict()">Predict</button>
+
+<div class="alert" id="alert">--</div>
+
+<div class="cards">
+
+<div class="card"><h4>Load</h4><p id="load">--</p></div>
+<div class="card"><h4>Time</h4><p id="time">--</p></div>
+<div class="card"><h4>Temp</h4><p id="temp">--</p></div>
+<div class="card"><h4>Day</h4><p id="day">--</p></div>
+<div class="card"><h4>Holiday</h4><p id="holiday">--</p></div>
+
+</div>
+
+<h3>⚡ Delhi Grid Distribution</h3>
+
+<div id="zones"></div>
+
+<canvas id="chart"></canvas>
+
+<script>
+
+let chart;
+
+async function predict(){
+
+const date=document.getElementById("date").value;
+
+const res=await fetch("http://127.0.0.1:8000/predict",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({date:date})
+});
+
+const data=await res.json();
+
+const load=data.predicted_peak_load_MW;
+
+// BASIC UI
+document.getElementById("load").innerText=load+" MW";
+document.getElementById("time").innerText=data.predicted_peak_hour.toFixed(2);
+document.getElementById("temp").innerText=data.temperature+" °C";
+document.getElementById("day").innerText=data.day_name;
+document.getElementById("holiday").innerText=data.is_holiday?"Yes":"No";
+
+// 🚨 ALERT SYSTEM
+let alertMsg="";
+let alertClass="green";
+
+if(load>7200){
+alertMsg="🚨 BLACKOUT RISK!";
+alertClass="red";
+}
+else if(load>6500){
+alertMsg="⚠ GRID STRESS";
+alertClass="yellow";
+}
+else{
+alertMsg="✅ GRID STABLE";
+}
+
+let alertEl=document.getElementById("alert");
+alertEl.innerText=alertMsg;
+alertEl.className="alert "+alertClass;
+
+
+// 🗺 ZONES
+const zones={
+NDPL: load*0.35,
+BRPL: load*0.30,
+BYPL: load*0.25,
+MES: load*0.10
+};
+
+let zoneHTML="";
+
+for(let z in zones){
+zoneHTML += `<div class="zone">${z}: ${zones[z].toFixed(0)} MW</div>`;
+}
+
+document.getElementById("zones").innerHTML=zoneHTML;
+
+
+// 📈 GRAPH
+const labels=["00","04","08","12","16","20"];
+const values=[load*0.7,load*0.85,load*0.95,load,load*0.9,load*0.75];
+
+if(chart) chart.destroy();
+
+chart=new Chart(document.getElementById("chart"),{
+type:"line",
+data:{
+labels:labels,
+datasets:[{
+data:values,
+borderColor:"cyan",
+tension:0.4
+}]
+}
+});
+
+}
+
+// ⏱ AUTO REFRESH
+setInterval(()=>{
+
+const date=document.getElementById("date").value;
+if(date) predict();
+
+},10000);
+
+</script>
+
+</body>
+</html>
