@@ -1,0 +1,14 @@
+pandas
+numpy
+scikit-learn
+fastapi
+uvicorn
+qiskit
+qiskit-aer
+matplotlib
+openpyxl
+holidays
+xgboost
+requests
+scipy
+joblib

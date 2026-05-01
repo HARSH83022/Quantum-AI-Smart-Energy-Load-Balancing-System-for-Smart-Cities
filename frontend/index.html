@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Quantum AI-Based Smart Grid Load and Peak Time Prediction System with QAOA Optimization" />
+  <title>⚡ Quantum AI Smart Grid Control Center</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <span class="logo">⚡</span>
+      <div>
+        <h1>Quantum AI Smart Grid</h1>
+        <p class="subtitle">Delhi Power Distribution • QAOA Optimized</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div id="api-badge" class="badge badge-checking">
+        <span class="dot"></span> Connecting...
+      </div>
+      <div class="live-clock" id="clock"></div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- CONTROL PANEL -->
+    <section class="control-panel glass">
+      <div class="control-inner">
+        <div class="input-group">
+          <label for="date">Select Date</label>
+          <input type="date" id="date" />
+        </div>
+        <button class="btn-predict" onclick="predict()" id="predictBtn">
+          <span id="btnText">⚛️ Run Quantum Prediction</span>
+          <span id="btnLoader" class="spinner hidden"></span>
+        </button>
+      </div>
+      <div id="alert-bar" class="alert-bar hidden"></div>
+    </section>
+
+    <!-- STAT CARDS -->
+    <section class="cards-grid" id="cards-section">
+      <div class="stat-card glass" id="card-load">
+        <div class="card-icon">🔋</div>
+        <div class="card-label">Peak Load</div>
+        <div class="card-value" id="load">--</div>
+        <div class="card-unit">MW</div>
+      </div>
+      <div class="stat-card glass">
+        <div class="card-icon">🕐</div>
+        <div class="card-label">Peak Hour</div>
+        <div class="card-value" id="time">--</div>
+        <div class="card-unit">hr</div>
+      </div>
+      <div class="stat-card glass">
+        <div class="card-icon">🌡️</div>
+        <div class="card-label">Temperature</div>
+        <div class="card-value" id="temp">--</div>
+        <div class="card-unit">°C</div>
+      </div>
+      <div class="stat-card glass">
+        <div class="card-icon">💧</div>
+        <div class="card-label">Humidity</div>
+        <div class="card-value" id="humidity">--</div>
+        <div class="card-unit">%</div>
+      </div>
+      <div class="stat-card glass">
+        <div class="card-icon">🌧️</div>
+        <div class="card-label">Rainfall</div>
+        <div class="card-value" id="rain">--</div>
+        <div class="card-unit">mm</div>
+      </div>
+      <div class="stat-card glass">
+        <div class="card-icon">📅</div>
+        <div class="card-label">Day</div>
+        <div class="card-value small" id="day">--</div>
+        <div class="card-unit"></div>
+      </div>
+      <div class="stat-card glass">
+        <div class="card-icon">🎉</div>
+        <div class="card-label">Holiday</div>
+        <div class="card-value small" id="holiday">--</div>
+        <div class="card-unit"></div>
+      </div>
+      <div class="stat-card glass">
+        <div class="card-icon">🏖️</div>
+        <div class="card-label">Weekend</div>
+        <div class="card-value small" id="weekend">--</div>
+        <div class="card-unit"></div>
+      </div>
+      <div class="stat-card glass">
+        <div class="card-icon">🔧</div>
+        <div class="card-label">Transformer</div>
+        <div class="card-value small" id="transformer">--</div>
+        <div class="card-unit"></div>
+      </div>
+      <div class="stat-card glass" id="card-risk">
+        <div class="card-icon">⚠️</div>
+        <div class="card-label">Outage Risk</div>
+        <div class="card-value small" id="risk">--</div>
+        <div class="card-unit"></div>
+      </div>
+    </section>
+
+    <!-- QUANTUM OPTIMIZATION SECTION -->
+    <section class="quantum-section" id="quantum-section">
+
+      <!-- Quantum Header -->
+      <div class="quantum-header glass">
+        <div class="quantum-title-row">
+          <div class="quantum-icon-wrap">
+            <span class="quantum-icon">⚛️</span>
+          </div>
+          <div>
+            <h2 class="quantum-title">Quantum Load Optimization</h2>
+            <p class="quantum-subtitle" id="quantum-method">QAOA • Qiskit Simulator</p>
+          </div>
+        </div>
+        <div class="quantum-stats-row">
+          <div class="quantum-stat">
+            <span class="quantum-stat-label">Balance Score</span>
+            <span class="quantum-stat-value" id="q-balance">--</span>
+          </div>
+          <div class="quantum-stat">
+            <span class="quantum-stat-label">Qubits</span>
+            <span class="quantum-stat-value" id="q-qubits">--</span>
+          </div>
+          <div class="quantum-stat">
+            <span class="quantum-stat-label">Quantum Energy</span>
+            <span class="quantum-stat-value" id="q-energy">--</span>
+          </div>
+          <div class="quantum-stat">
+            <span class="quantum-stat-label">Time</span>
+            <span class="quantum-stat-value" id="q-time">--</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transformer Allocation Grid -->
+      <div class="transformer-grid" id="transformer-grid">
+        <!-- Populated dynamically by JS -->
+        <div class="transformer-placeholder glass">
+          <p>Run a prediction to see quantum-optimized transformer allocations</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BOTTOM GRID: ZONES + CHART -->
+    <section class="bottom-grid">
+
+      <!-- ZONE DISTRIBUTION (now quantum-powered) -->
+      <div class="zone-panel glass">
+        <h2 class="panel-title">⚡ Quantum Load Distribution</h2>
+        <div id="zones" class="zones-list">
+          <p class="placeholder-text">Run a prediction to see zone data</p>
+        </div>
+      </div>
+
+      <!-- LOAD CURVE CHART -->
+      <div class="chart-panel glass">
+        <h2 class="panel-title">📈 Daily Load Curve</h2>
+        <div class="chart-wrap">
+          <canvas id="chart"></canvas>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
